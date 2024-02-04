@@ -1,3 +1,4 @@
+
 let currentsong = new Audio();
 let curfolder;
 // let show = document.body.querySelector(".show");
