@@ -1,4 +1,3 @@
-
 let currentsong = new Audio();
 let curfolder;
 // let show = document.body.querySelector(".show");
@@ -40,7 +39,7 @@ function secondsToMinutesSeconds(seconds) {
 async function getsong(folder) {
   curfolder = folder;
   let song = await fetch(
-    `http://127.0.0.1:5501/songs/${curfolder}`
+    `http://127.0.0.1:5501/songs/${folder}`
   );
   let response = await song.text();
   console.log(response);
@@ -51,7 +50,7 @@ async function getsong(folder) {
   for (let i = 0; i < a.length; i++) {
     let element = a[i];
     if (element.href.endsWith(".mp3")) {
-      all.push(element.href.split(`/${curfolder}/`)[1]);
+      all.push(element.href.split(`/${folder}/`)[1]);
     }
   }
 
@@ -96,21 +95,6 @@ const playmusic = (track, pause = false) => {
   document.body.querySelector(".song-time").innerHTML = "00:00 / 00:00";
 };
 
-  // function stop(currentsong){
-  //   if(currentsong.currentTime == currentsong.duration){
-  //     play.src = "pause.svg";
-  //     let index = song1.indexOf(
-  //       currentsong.src.split(`songs/${curfolder}/`).slice(-1)[0]
-  //     );
-  //     if (index + 1 < song1.length) {
-  //       playmusic(song1[index + 1]);
-  //     }
-  //   }
-  // }
-
-
-
-
 async function main1() {
   var song1=await(getsong("shree_ram"));
   let play1 = document.body.getElementsByClassName("card");
@@ -124,6 +108,8 @@ async function main1() {
   let leftbar = document.body.querySelector(".left");
 
   Array.from(play1).forEach(e=>{
+    console.log(e);
+    
     e.addEventListener("click",()=>{
       if (leftbar.style.left == "-100%") {
         leftbar.style.left = "0";
@@ -141,20 +127,6 @@ async function main1() {
     
   })
 
-
-
-  // play1.addEventListener("click", () => {
-  //   if (leftbar.style.left == "-100%") {
-  //     leftbar.style.left = "0";
-  //     lib_main.style.display = "none";
-  //     list.style.display = "block";
-  //     playbar.style.display = "block";
-  //   } else {
-  //     lib_main.style.display = "none";
-  //     list.style.display = "block";
-  //     playbar.style.display = "block";
-  //   }
-  // });
   play.addEventListener("click", () => {
     if (currentsong.paused) {
       currentsong.play();
