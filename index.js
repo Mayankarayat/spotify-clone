@@ -39,7 +39,7 @@ function secondsToMinutesSeconds(seconds) {
 async function getsong(folder) {
   curfolder = folder;
   let song = await fetch(
-    `http://127.0.0.1:5501/songs/${folder}`
+    `http://127.0.0.1:5500/spotify-clone/songs/${folder}`
     // `https://github.com/Mayankarayat/spotify-clone/tree/main/songs/${folder}`
     // `/${folder}`
   );
@@ -98,7 +98,7 @@ const playmusic = (track, pause = false) => {
 };
 
 async function main1() {
-  var song1=await(getsong("songs/shree_ram"));
+  var song1=await(getsong("shree_ram"));
   // playmusic(song1[0], true);
   let play1 = document.body.getElementsByClassName("card");
   // let play1 = document.body.querySelector(".card");
